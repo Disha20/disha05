@@ -1,0 +1,19 @@
+<div ng-controller = "dialogctrl">
+<md-bottom-sheet class="md-list md-has-header">
+  <md-subheader ng-cloak>Purchased Items</md-subheader>
+  <md-list ng-cloak>
+    
+    <md-list-item ng-repeat="product in products">
+
+     <ul>
+            <li>
+                <!--<span ng-bind = "product.tsk">-->
+                {{product.tsk}}
+                <img src="images/download.jpg" id= "a1" ng-click="remove(x)"></img>
+            </li>
+        </ul>
+
+    </md-list-item>
+  </md-list>
+</md-bottom-sheet>
+</div>

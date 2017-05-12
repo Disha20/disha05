@@ -1,0 +1,27 @@
+ <div ng-controller="loginCtrl">
+    <md-content layout-padding>    
+   
+    <h2 id = "a3">Login Page</h2>
+     
+    <form id = "a1" ng-submit="submit()">
+       <md-input-container>
+            <label for="username">User Name:</label>
+            <input type="text"  id="username" ng-model = "username" class="form-control"  required ng-model = "username" required placeholder="Enter your Username" />
+        </md-input-container>
+           <!--ng-model="vm.username"  ng-model="vm.password">-->
+            <br>
+        <md-input-container>
+            <label for="password">Password:</label>
+            <input type="password"  id="password" ng-model = "password" class="form-control"  ng-model = "password" required placeholder="Enter your Password" />
+           
+         </md-input-container>
+         <br>
+        <md-input-container>
+            <md-button class = "md-warn md-raised" type="submit">Login</md-button>
+         </md-input-container>
+            <!--<a href="#/register" class="btn btn-link">Register</a>-->
+        
+    </form>
+   
+    </md-content>
+    </div>

@@ -1,0 +1,223 @@
+<md-toolbar>
+        <div class="md-toolbar-tools">
+                <p><strong>Items</strong></p>
+            <md-button ng-click = "openSidebar()">
+                <md-icon class = "mdi mdi-plus-circle"></md-icon>
+                New Item
+            </md-button>
+            <md-button ng-click="showFilters = true">
+                <md-icon class="mdi mdi-magnify"></md-icon>
+                Filters
+            </md-button>
+       
+        <!--span flex></span-->
+           <!--  <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >-->
+             <!--md-button class="md-primary md-raised" ng-click="showDialog();cart = true">My Cart</md-button-->
+
+             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">   pen Modal</button>
+
+            
+           
+            <md-button ng-click = "logout()" class = "md-raised">LogOut
+            </md-button>
+    
+        
+        <!--<div ng-show = "cart"  ng-model="product">
+            <ul ng-repeat = "product in products | filter: 'product'" value ="{{ product }}""> 
+                <li>{{ product.tsk }}</li>
+            </ul>
+        </div>-->
+        <!--<div>
+
+        
+        <ul ng-show = "buyItem">
+            <li>hiii</li>
+            <li ng-repeat="product in products" value="{{ product }}">
+                {{ product.tsk }}
+            </li>
+        </ul>
+    </div>-->
+        </div>
+
+    </md-toolbar>
+     <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Purchased Items</h4>
+        </div>
+        <div class="modal-body">
+          foreach(var product in products)
+
+             <ul>
+                    <li>
+                        <!--<span ng-bind = "product.tsk">-->
+                        {{product.tsk}}
+                        <img src="images/download.jpg" id= "a1" ng-click="remove(x)"></img>
+                    </li>
+                </ul>
+
+    </md-list-item>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+     <!--<div class="md-dialog-container"  md-dialog-id = "left">-->
+    <!--<md-dialog ng-show = "cart" class="dialog-demo-content" md-dialog-id = "left"layout="column" layout-align="center center" style="width:100%">-->
+    
+
+
+  <!--  <div  ng-show = "cart" ng-repeat = "product in products" >
+        <ul>
+            <li>
+                <!--<span ng-bind = "product.tsk">
+                {{product.tsk}}
+                <img src="images/download.jpg" id= "a1" ng-click="remove(x)"></img>
+            </li>
+        </ul>-->
+        <!--<md-input-container>
+            <md-list ng-model = "product">
+                <md-list-item><span ng-bind = "product.tsk">
+                </md-list-item>
+            </md-list>
+
+        </md-input-container>-->
+    <!--</div>-->
+  
+    <!--</md-dialog>-->
+    <div class="filters" ng-show = "showFilters">
+    <md-input-container>
+        <label>Search</label>
+        <input type="text" ng-model="starsFilter">
+    </md-input-container>
+    <md-input-container>
+        <select ng-model="myVar">
+            <option value="">select
+            <option value="price">list by price
+            <option value="posted">list by date
+            <option value="categories">list by category
+        </select>
+    </md-input-container>
+    <md-input-container>
+        <md-button class="md-warn" 
+            ng-click="starsFilter = ''; myVar = ''; showFilters = false">Clear</md-button>
+    </md-input-container>
+    
+
+    
+
+    
+
+</div>
+    
+    
+    <md-sidenav class = "md-sidenav-left" md-component-id = "left">
+        <md-toolbar>
+            <h1 class = "md-toolbar-tools">Add a Star</h1>
+        </md-toolbar>
+        <md-content class = "md-padding">
+            <!--<form name="userForm" ng-submit="submitForm(userForm.$valid)">-->
+            <form name="userForm">
+                <md-input-container>
+                    <label for = "title">Title</label>
+                    <input type = "text" class="form-control" id = "title" ng-model = "star.title" ng-autofocus required>
+                </md-input-container>
+                <md-input-container>
+                    <label for = "price">Price</label>
+                    <input type = "number" class="form-control" id = "price" ng-model = "star.price" required>
+                </md-input-container>
+                <md-input-container>
+                    <label for = "description">Description</label>
+                    <textarea type = "text" class="form-control" id = "description" ng-model = "star.description" required>
+                    </textarea>
+                </md-input-container>
+                <md-input-container>
+                    <label for = "image">Image Link</label>
+                    <input type = "text" class="form-control" id = "image" ng-model = "star.image" required>
+                </md-input-container>
+
+
+                <md-button type="submit" class = "md-raised"  ng-click = "saveItem(userForm.$valid,star)">save
+                </md-button>
+                <!--ng-disabled="userForm.$invalid" -->
+                <md-button class = "md-raised">save edit
+                </md-button>
+                <md-button class = "md-raised" ng-click = "closeSidebar()">cancel
+                </md-button>
+            </form>
+        </md-content>
+            
+    </md-sidenav>
+        <md-content class="md-padding" layout = "row" layout-wrap>
+         <md-card ng-repeat = "star in stars | 
+                            filter: starsFilter |
+                            orderBy : myVar " flex="30">
+            <img ng-src = "{{ star.image }}"/>
+            <md-card-content>
+                <div>
+                    <!--<h2>{{ star.title }}</h2>-->
+                    <h2><span ng-bind = "star.title"></span></h2>
+                    <h3>{{ star.price | currency }}</h3>
+                    <md-input-container>
+                        <md-button class = "md-raised" ng-click="buyProduct(star); buyItem = true;cart = false;this.disabled=true"> Add to Cart
+                        </md-button>
+                    </md-input-container>
+                    <md-input-container ng-show = "buyItem">
+                        <label for = "quantity">Quantity</label>
+                        <input type = "number"  id = "quantity" ng-model = "quantity">
+                        <p ng-if = "quantity"><b>Total in dollar:</b> {{quantity * star.price}}</p>
+                    </md-input-container>
+                </div>
+                <div>
+                    <md-button class = "md-primary md-raised"
+                    ng-click = "showContact = true" 
+                    ng-show = "!showContact" >Contacts
+                        <md-tooltip>
+                            Displays Contact Info
+                        </md-tooltip>
+                    </md-button>
+                    
+                    <md-button class = "md-primary md-raised"
+                    ng-click = "showContact = false" 
+                    ng-show = "showContact">Details
+                        <md-tooltip>
+                             Displays Details
+                        </md-tooltip>
+                    </md-button>
+                    <md-button class = "md-primary md-raised"
+                    ng-click = "showAdmin = true" 
+                    ng-show = "!showAdmin">Admin
+                    </md-button>
+                    <md-button class = "md-primary md-raised"
+                    ng-click = "showAdmin = false"
+                    ng-show = "showAdmin">Close
+                    </md-button>
+                    
+                </div>
+                <div ng-show = "showContact">
+                    <p><md-icon class = "mdi mdi-account"></md-icon>
+                    {{ star.contact.name }}</p>
+                    <p><md-icon class = "mdi mdi-phone"></md-icon>
+                    {{ star.contact.phone }}</p>
+                    <p><md-icon class = "mdi mdi-email"></md-icon>
+                    {{ star.contact.email }}</p>
+                </div>
+                
+                <div ng-show = "showAdmin">
+                    <md-button class = "md-primary md-raised">Edit</md-button>
+                    <md-button class = "md-warm md-raised">Delete</md-button>
+                </div>
+                
+                </md-card-content>
+
+        </md-card>
+        
+    </md-content>

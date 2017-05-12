@@ -1,0 +1,26 @@
+button .material-icons{
+margin-bottom:15px;
+}
+#a1{
+	padding: 10px;
+	margin: 10px;
+	border-width: 1px;
+	 margin-top :80px;
+	 margin-left: 550px;
+	
+
+}
+h2#a3{
+	margin-left: 520px;
+	font-size: 50px;
+	font-style: sans-serif;
+	color: lightblue;
+    text-shadow: 2px 2px 4px #000000;
+}
+#a2{
+	width:15px; 
+	height:15px;
+}
+#a4{
+	float:right;
+}
